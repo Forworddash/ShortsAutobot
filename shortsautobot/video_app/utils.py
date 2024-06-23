@@ -49,3 +49,26 @@ def upload_to_instagram(video_path, caption):
     bot = Bot()
     bot.login(username=INSTAGRAM_USERNAME, password=INSTAGRAM_PASSWORD)
     bot.upload_video(video_path, caption=caption)
+
+# Upload to YouTube
+def upload_to_youtube(video_path, title, description, tags):
+    youtube = build('youtube', 'v3', developerKey=settings.YOUTUBE_API_KEY)
+    request_body = {
+        'snippet': {
+            'title': title,
+            'description': description,
+            'tags': tags,
+            'categoryId': 22
+        },
+        'status': {
+            'privacyStatus': 'public'
+        }
+    }
+    media = MediaFileUpload(video_path, chunksize=-1, resumable=True)
+    request = youtube.videos().insert(
+        part='snippet,status',
+        body=request_body,
+        media_body=media
+    )
+    response = request.execute()
+    return response.get('id')
