@@ -14,6 +14,7 @@ from pathlib import Path
 import praw
 from dotenv import load_dotenv
 import os
+from celery.schedules import crontab
 
 # load in env variables here
 load_dotenv()
@@ -44,6 +45,14 @@ reddit = praw.Reddit(client_id=REDDIT_CLIENT_ID,
 # Celery configurations
 CELERY_BROKER_URL = 'redis://localhost:6379/0'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+
+# Celery Beat schedule
+CELERY_BEAT_SCHEDULE = {
+    'create-and-post-videos': {
+        'task': 'video_app.tasks.create_and_post_videos',
+        'schedule': crontab(hour=0, minute=0),
+    },
+}
 
 
 # Application definition
