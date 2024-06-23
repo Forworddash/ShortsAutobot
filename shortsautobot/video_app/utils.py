@@ -1,4 +1,6 @@
 from django.conf import settings
+from gtts import gTTS
+import os
 
 def get_hot_reddit_posts(subreddit='all', limit=5):
     """
@@ -17,3 +19,10 @@ def get_hot_reddit_posts(subreddit='all', limit=5):
 
         })
     return posts
+
+def text_to_speech(text, output_file):
+    """
+    Convert text to speech
+    """
+    tts = gTTS(text=text, lang='en')
+    tts.save(output_file)
