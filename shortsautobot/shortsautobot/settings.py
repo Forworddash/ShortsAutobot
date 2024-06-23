@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import praw
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,6 +27,15 @@ SECRET_KEY = 'django-insecure-99m4f_7jtr87--=u#uksf*1j0t@3es(r%ba_tabj^h(h*ptx&#
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+# Add Reddit API credentials
+REDDIT_CLIENT_ID = 'YOUR_CLIENT_ID'
+REDDIT_CLIENT_SECRET = 'YOUR_CLIENT_SECRET'
+REDDIT_USER_AGENT = 'YOUR_USER_AGENT'
+
+reddit = praw.Reddit(client_id=REDDIT_CLIENT_ID,
+                     client_secret=REDDIT_CLIENT_SECRET,
+                     user_agent=REDDIT_USER_AGENT)
 
 
 # Application definition
