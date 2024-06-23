@@ -13,6 +13,7 @@ load_dotenv()
 # initialize the environment variables here for usage in this file
 INSTAGRAM_USERNAME = os.getenv('INSTAGRAM_USERNAME')
 INSTAGRAM_PASSWORD = os.getenv('INSTAGRAM_PASSWORD')
+YOUTUBE_API_KEY = os.getenv('YOUTUBE_API_KEY')
 
 # Get hot posts from a subreddit (in this case, we are using 'all' to get posts from all subreddits)
 def get_hot_reddit_posts(subreddit='all', limit=5):
@@ -52,7 +53,7 @@ def upload_to_instagram(video_path, caption):
 
 # Upload to YouTube
 def upload_to_youtube(video_path, title, description, tags):
-    youtube = build('youtube', 'v3', developerKey=settings.YOUTUBE_API_KEY)
+    youtube = build('youtube', 'v3', developerKey=YOUTUBE_API_KEY)
     request_body = {
         'snippet': {
             'title': title,
