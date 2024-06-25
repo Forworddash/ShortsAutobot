@@ -34,16 +34,16 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-REDDIT_CLIENT_ID = os.getenv('REDDIT_CLIENT_ID')
-REDDIT_CLIENT_SECRET = os.getenv('REDDIT_CLIENT_SECRET')
-REDDIT_USER_AGENT = os.getenv('REDDIT_USER_AGENT')
+# REDDIT_CLIENT_ID = os.getenv('REDDIT_CLIENT_ID')
+# REDDIT_CLIENT_SECRET = os.getenv('REDDIT_CLIENT_SECRET')
+# REDDIT_USER_AGENT = os.getenv('REDDIT_USER_AGENT')
 
 INSTAGRAM_USERNAME = os.getenv('INSTAGRAM_USERNAME')
 INSTAGRAM_PASSWORD = os.getenv('INSTAGRAM_PASSWORD')
 
-reddit = praw.Reddit(client_id=REDDIT_CLIENT_ID,
-                     client_secret=REDDIT_CLIENT_SECRET,
-                     user_agent=REDDIT_USER_AGENT)
+# reddit = praw.Reddit(client_id=REDDIT_CLIENT_ID,
+#                      client_secret=REDDIT_CLIENT_SECRET,
+#                      user_agent=REDDIT_USER_AGENT)
 
 # Celery configurations
 CELERY_BROKER_URL = 'redis://localhost:6379/0'
@@ -67,6 +67,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'video_app',
 ]
 
 MIDDLEWARE = [
